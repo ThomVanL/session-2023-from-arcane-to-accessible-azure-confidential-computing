@@ -1,0 +1,9 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - build-essential
+  - cmake
+  - git
+runcmd:
+  - apt-get -y install linux-headers-$(uname -r)
+  - git clone https://github.com/ThomVanL/session-2022-exploring-azure-confidential-computing.git

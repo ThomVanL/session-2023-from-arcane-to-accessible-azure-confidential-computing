@@ -1,0 +1,35 @@
+#cloud-config
+apt:
+  preserve_sources_list: true
+  sources:
+    intel_sgx:
+      # Key id expires: 2023-05-24
+      keyid: 35BF D5E1 AEFF A8C4 996D  DD0D AA65 AD26 261B 320B
+      source: "deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu focal main"
+      keyserver: https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key
+    llvm:
+      source: "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-10 main"
+      keyserver: https://apt.llvm.org/llvm-snapshot.gpg.key
+      keyid: 6084 F3CF 814B 57C1 CF12  EFD5 15CF 4D18 AF4F 7421
+    microsoft:
+      source: "deb [arch=amd64] https://packages.microsoft.com/ubuntu/20.04/prod focal main"
+      keyserver: https://packages.microsoft.com/keys/microsoft.asc
+      keyid: BC52 8686 B50D 79E3 39D3 721C EB3E 94AD BE12 29CF
+package_upgrade: true
+packages:
+  - build-essential
+  - cmake
+  - git
+  - clang-10
+  - libssl-dev
+  - gdb
+  - libsgx-enclave-common
+  - libsgx-quote-ex
+  - libprotobuf17
+  - libsgx-dcap-ql
+  - libsgx-dcap-ql-dev
+  - az-dcap-client
+  - open-enclave
+  - scanmem
+runcmd:
+  - git clone https://github.com/ThomVanL/session-2022-exploring-azure-confidential-computing.git
